@@ -47,17 +47,18 @@ cd fadecandy/server
 make submodules
 make
 sudo cp fcserver /usr/local/bin
-sudo cp /home/pi/omma/fcserver.json /usr/local/bin/
+# if you have a custom config, move it too
+sudo cp fcserver.json /usr/local/bin/
 
 
-# install bluetooth keyboard dongle
-#
-sudo apt-get install bluez python-gobject blueman
-
-hcitool dev
-http://elinux.org/RPi_Bluetooth_keyboard_setup
-sudo bluetoothctl
-#(Turns out not to work from CLI because keb generates new passcode, suing blueman)
+# install blink(1) rgb indicator led (if you have one)
+# via
+sudo apt-get install libusb-1.0-0-dev
+git clone https://github.com/todbot/blink1.git
+cd blink1/commandline
+make
+sudo ./blink1-tool --on  
+sudo cp blink1-tool /usr/local/sbin
 
 # Make things start up
 # sudo emacs /etc/rc.local

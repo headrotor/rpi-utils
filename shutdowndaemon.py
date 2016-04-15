@@ -22,7 +22,7 @@ from subprocess import Popen
 # Set to True for debug output to log file
 verbose = False
 # set to True for dry run test (don't actually shut down :)
-test = True
+test = False
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(gpio_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
