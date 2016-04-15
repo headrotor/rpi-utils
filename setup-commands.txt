@@ -1,0 +1,78 @@
+# provision a new rpi using jessie distribution.
+# when you've done this, buy spare sd cards and dd this system onto them!!!
+
+sudo raspi-config # chng pwd, expand filesystem, enable ssh, en.US.UTF-8 UTF8
+
+sudo apt-get update
+sudo apt-get upgrade
+
+
+sudo rm /etc/ssh/ssh_host_* && sudo dpkg-reconfigure openssh-server
+
+sudo apt-get install git emacs24 python-dev python-rpi.gpio tightvncserver 
+
+#suggested: emacs24-common-non-dfsg emacs24-el ghostscript-x m17n-docs
+
+# fix keyboard layout https://www.element14.com/community/thread/24566/l/solved-mis-mapped-keyboards-for-rpi?displayFullThread=true
+sudo emacs  /etc/default/keyboard 
+# change XKBLAYOUT=”gb” to read XKBLAYOUT=”us”, reboot
+
+
+# configure vnc server http://gettingstartedwithraspberrypi.tumblr.com/post/24142374137/setting-up-a-vnc-server
+tightvncserver
+vncserver :1 -geometry 1024x728 -depth 24
+
+# configure static IP http://elinux.org/RPi_Setting_up_a_static_IP_in_Debian
+sudo emacs /etc/network/interfaces
+/etc/init.d/networking restart
+
+# fix overscan -- my pocket display needs this!
+# https://github.com/ukscone/set_overscan
+
+# install git repository
+git clone https://github.com/headrotor/ommadev.git
+
+#install processing YUCK!
+curl https://processing.org/download/install-arm.sh > install-arm.sh
+# inspect it for badness
+sudo sh instal-arm.sh
+# follow java instructions
+
+
+# install fadecandy server
+#https://learn.adafruit.com/1500-neopixel-led-curtain-with-raspberry-pi-fadecandy/fadecandy-server-setup
+
+git clone git://github.com/scanlime/fadecandy
+cd fadecandy/server
+make submodules
+make
+sudo cp fcserver /usr/local/bin
+sudo cp /home/pi/omma/fcserver.json /usr/local/bin/
+
+
+# install bluetooth keyboard dongle
+#
+sudo apt-get install bluez python-gobject blueman
+
+hcitool dev
+http://elinux.org/RPi_Bluetooth_keyboard_setup
+sudo bluetoothctl
+#(Turns out not to work from CLI because keb generates new passcode, suing blueman)
+
+# Make things start up
+# sudo emacs /etc/rc.local
+# Just above the final “exit 0” line, copy and paste the following:
+# /usr/local/bin/fcserver /usr/local/bin/fcserver.json >/var/log/fcserver.log 2>&1 &
+
+# also add a link to local startup script
+# /home/pi/on_startup.sh  >/var/log/on_startup.log 2>&1 &
+
+# install clean shutdown script when pin by U13 is shorted
+
+
+# make fadecandy controller auto-start (above) and make process autostart:
+
+
+
+
+
