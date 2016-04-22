@@ -6,6 +6,8 @@ sudo raspi-config # chng pwd, expand filesystem, enable ssh, en.US.UTF-8 UTF8
 sudo apt-get update
 sudo apt-get upgrade
 
+# change hostname so we can find it on the net with ping <hostname>.local
+http://www.howtogeek.com/167195/how-to-change-your-raspberry-pi-or-other-linux-devices-hostname/
 
 sudo rm /etc/ssh/ssh_host_* && sudo dpkg-reconfigure openssh-server
 
