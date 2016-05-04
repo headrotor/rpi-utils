@@ -11,6 +11,7 @@ sudo rm /etc/ssh/ssh_host_* && sudo dpkg-reconfigure openssh-server
 
 sudo apt-get install git emacs24 python-dev python-rpi.gpio tightvncserver 
 
+
 #suggested: emacs24-common-non-dfsg emacs24-el ghostscript-x m17n-docs
 
 # fix keyboard layout https://www.element14.com/community/thread/24566/l/solved-mis-mapped-keyboards-for-rpi?displayFullThread=true
@@ -18,9 +19,18 @@ sudo emacs  /etc/default/keyboard
 # change XKBLAYOUT=”gb” to read XKBLAYOUT=”us”, reboot
 
 
-# configure vnc server http://gettingstartedwithraspberrypi.tumblr.com/post/24142374137/setting-up-a-vnc-server
+# configure vnc server for headless http://gettingstartedwithraspberrypi.tumblr.com/post/241
+42374137/setting-up-a-vnc-server
+sudo apt-get install tightvncserver autocutsel xfonts-75dpi
 tightvncserver
+# run start it first time to get passwd
 vncserver :1 -geometry 1024x728 -depth 24
+# enable cut and paste http://raspberrypi.stackexchange.com/questions/4474/tightvnc-copy-paste-between-local-os-and-raspberry-pi
+
+#configure vnc server to share hdmi display
+sudo apt-get install x11vnc
+sudo x11vnc -usepw
+# deactivate monitor sleep http://chamaras.blogspot.com/2013/03/how-to-deactivate-monitor-sleep-in.html
 
 # configure static IP http://elinux.org/RPi_Setting_up_a_static_IP_in_Debian
 sudo emacs /etc/network/interfaces
@@ -74,6 +84,11 @@ sudo cp blink1-tool /usr/local/sbin
 # make fadecandy controller auto-start (above) and make process autostart:
 
 
-
+##########################################
+http://rpihome.blogspot.com/2015/03/face-detection-with-raspberry-pi.html
+# install opencv
+sudo apt-get install python-opencv  libopencv-dev python-dev 
+# for local rpi camera https://github.com/alduxvm/rpi-opencv
+sudo modprobe bcm2835-v4l2
 
 
