@@ -44,6 +44,10 @@ sudo emacs /etc/network/interfaces
 # install git repository
 git clone https://github.com/headrotor/ommadev.git
 
+
+# remove Wolfram bloatware (650 MB)
+sudo apt-get purge wolfram-engine
+ 
 #install processing YUCK!
 curl https://processing.org/download/install-arm.sh > install-arm.sh
 # inspect it for badness
@@ -113,5 +117,9 @@ http://rpihome.blogspot.com/2015/03/face-detection-with-raspberry-pi.html
 sudo apt-get install python-opencv  libopencv-dev python-dev 
 # for local rpi camera https://github.com/alduxvm/rpi-opencv
 sudo modprobe bcm2835-v4l2
+
+
+################## install openframeworks
+http://openframeworks.cc/setup/raspberrypi/raspberry-pi-getting-started/
 
 
