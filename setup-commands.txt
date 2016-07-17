@@ -86,6 +86,27 @@ sudo cp blink1-tool /usr/local/sbin
 # make fadecandy controller auto-start (above) and make process autostart:
 
 
+# install samba server
+# http://raspberrywebserver.com/serveradmin/share-your-raspberry-pis-files-and-folders-across-a-network.html
+sudo apt-get install  samba samba-common-bin
+
+
+#install music player daemon, control, and python bindings
+sudo apt-get install mpd mpc mpd-python
+
+# configure audio to play only on headphone out
+
+# change terminal colors to readable
+http://raspberrypiprogramming.blogspot.com/2014/08/change-prompt-color-in-bash.html
+
+https://www.raspberrypi.org/forums/viewtopic.php?t=60748&p=453328
+# in .bashrc
+export LS_COLORS='rs=0:di=01;36:ln=44;37:mh=00:pi=40;33'
+
+# mount remote samba share
+Add to /etc/fstab:
+//192.168.1.1/RemoteShare /LocalMNT smbfs username=bob,password=password
+
 ##########################################
 http://rpihome.blogspot.com/2015/03/face-detection-with-raspberry-pi.html
 # install opencv
