@@ -10,5 +10,7 @@ do
   clear
   echo "CPU temp=$cpuTemp1.$cpuTempM'C"
   echo "GPU $(/opt/vc/bin/vcgencmd measure_temp)"
+  echo "clk $(/opt/vc/bin/vcgencmd measure_clock arm)"
+  echo "~turbo: $(/usr/bin/gpio -g read 35)"
   sleep 1
 done
