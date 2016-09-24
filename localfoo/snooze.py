@@ -17,18 +17,40 @@ def init_mpd(host='localhost'):
     client.connect(host, 6600)  # connect to localhost:6600
     return client
 
+def rmfile(fn):
+    try:
+        os.remove(fn)
+    except OSError:
+        pass
+
+def touchfile(fn):
+    with open(fn, 'w+') as f:
+        f.write('snoozin')
+
 if __name__ == "__main__":
 
+    snoozes = 3600
+    statusf = '/home/pi/.snooze'
     client = init_mpd()
-    # are we playing or streaming? 
-    result = client.status();
-    if result['state'] == 'play':
-        sys.stdout.write('snooze.py: snoozing in 3600\n')
-        time.sleep(3600)
+
+    # first, are we already aiting to snooze?
+    if os.path.isfile(statusf):
+        sys.stdout.write('already snoozin, stopped')
+        #stop snooze and delete snoozefile
         client.stop()
-        sys.stdout.write('snooze.py: snoozed\n')
+        rmfile(statusf)
     else:
-        client.play()
-        sys.stdout.write('snooze.py: playing\n') 
+        # are we playing or streaming? 
+        result = client.status();
+        if result['state'] == 'play':
+            sys.stdout.write('snooze.py: snoozing in {}\n'.format(snoozes))
+            touchfile(statusf)
+            time.sleep(snoozes)
+            client.stop()
+            rmfile(statusf)
+            sys.stdout.write('snooze.py: snoozed\n')
+        else:
+            client.play()
+            sys.stdout.write('snooze.py: playing\n') 
 
     
