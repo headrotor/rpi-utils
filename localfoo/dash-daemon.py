@@ -8,7 +8,9 @@ def arp_display(pkt):
       #print "found arp 1 hwsrc " + pkt[ARP].hwsrc + " psrc " + pkt[ARP].psrc 
       if pkt[ARP].hwsrc == '74:75:48:26:b2:ac': # ARP Prob
         sys.stdout.write('Dash ac detected\n')
-        Popen(['/usr/bin/python3','/home/pi/gith/rpi-utils/localfoo/snooze.py'])
+        Popen(['/usr/bin/python3',
+               '/home/pi/gith/rpi-utils/localfoo/snooze.py',
+               '15'])
         call(['date'])
       elif pkt[ARP].hwsrc == '74:c2:46:08:7c:d5':
         sys.stdout.write('print "Dash d5 detected\n')
