@@ -98,6 +98,7 @@ export  TZ='America/Los_Angeles'
 alias gca='git commit -a -m "checkpoint"'
 alias gpom='git push origin master'
 alias gitls='git ls-tree -r master --name-only'
+alias upd='sudo apt-get update; sudo apt-get upgrade -y'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -110,7 +111,7 @@ fi
 
 
 
-export LS_COLORS='rs=0:di=01;36:ln=44;37:mh=00:pi=40;33'
+#export LS_COLORS='rs=0:di=01;36:ln=44;37:mh=00:pi=40;33'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
