@@ -5,7 +5,7 @@ from subprocess import call, Popen
 def arp_display(pkt):
   if pkt.haslayer(ARP):
     if pkt[ARP].op == 1: #who-has (request)
-      #print "found arp 1 hwsrc " + pkt[ARP].hwsrc + " psrc " + pkt[ARP].psrc 
+      print "found arp 1 hwsrc " + pkt[ARP].hwsrc + " psrc " + pkt[ARP].psrc 
       if pkt[ARP].hwsrc == '74:75:48:26:b2:ac': # ARP Prob
         sys.stdout.write('Dash ac detected\n')
         Popen(['/usr/bin/python3',
