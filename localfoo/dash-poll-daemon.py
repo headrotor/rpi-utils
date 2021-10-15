@@ -63,7 +63,7 @@ class Dashbutton(object):
         return False
 
     def execute(self):
-        #print str(self.command)
+        print str(self.command)
         Popen(self.command)
     
 dashes = []
@@ -75,7 +75,8 @@ d.command = ['/usr/bin/python3',
 dashes.append(d)
 
 d = Dashbutton('top', '192.168.1.201')
-d.command = ['/bin/bash', '/home/pi/top_curtains.sh']
+d.command = ['mpc','toggle']
+#d.command = ['/bin/bash', '/home/pi/top_curtains.sh']
 dashes.append(d)
 
 d = Dashbutton('door', '192.168.1.141')
