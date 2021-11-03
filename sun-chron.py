@@ -29,7 +29,7 @@ if __name__ == '__main__':
     #city = LocationInfo("London", "England", "Europe/London", 51.5, -0.116)
     city = lookup("San Francisco", database())
 
-    print('Information for %s/%s\n' % (city_name, city.region))
+    print('Information for %s/%s\n' % (city.name, city.region))
 
     print((
         f"Information for {city.name}/{city.region}\n"
